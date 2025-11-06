@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pujitha Mamidishetty | Portfolio</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+    body {background:#f5f7fa; color:#222; scroll-behavior:smooth; transition:background 0.5s, color 0.5s;}
+    header {position:fixed; top:0; left:0; width:100%; background:#222; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000; transition:background 0.5s;}
+    header h1 {font-size:22px; letter-spacing:1px;}
+    nav a {color:#fff; margin-left:20px; text-decoration:none; font-weight:500; transition:color 0.3s;}
+    nav a:hover {color:#f4a261;}
+    #toggle {margin-left:20px; background:#f4a261; border:none; color:#fff; padding:8px 15px; border-radius:20px; cursor:pointer; transition:0.3s;}
+    #toggle:hover {background:#e76f51;}
+
+    /* Section styling for continuous scroll */
+    section {
+      min-height: auto;
+      padding: 50px 5%;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+    }
+    h2 {font-size:28px; margin:20px 0 15px 0; color:#264653; transition:color 0.5s;}
+    p, li {font-size:16px; line-height:1.5; margin-bottom:10px;}
+
+    /* Hero - Extended Home Section */
+    #home {
+      background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80'); 
+      background-size:cover; 
+      background-position:center; 
+      color:#fff; 
+      text-align:center;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 5%;
+    }
+    #home h1 {font-size:52px; margin-bottom:20px; font-weight:700;}
+    #home h3 {font-size:26px; margin-bottom:30px; height:40px; font-weight:300;}
+    .home-subtitle {
+      font-size: 20px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .home-highlights {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+    .highlight-item {
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      max-width: 280px;
+      transition: transform 0.3s ease;
+    }
+    .highlight-item:hover {
+      transform: translateY(-5px);
+    }
+    .highlight-item h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #f4a261;
+    }
+    .highlight-item p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .home-buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .home-btn {
+      padding: 15px 30px;
+      border: none;
+      background:#f4a261;
+      color:#fff;
+      font-size:16px;
+      border-radius:25px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .home-btn:hover {
+      background:#e76f51;
+      transform: translateY(-2px);
+    }
+    .home-btn.secondary {
+      background: transparent;
+      border: 2px solid #f4a261;
+      color: #f4a261;
+    }
+    .home-btn.secondary:hover {
+      background: rgba(244, 162, 97, 0.1);
+    }
+
+    /* About - Wider Section without Photo */
+    #about {
+      background:#fff;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 5%;
+    }
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-content p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .feature-card {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid #f4a261;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .feature-card h4 {
+      color: #264653;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    .feature-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    /* Experience / Projects */
+    .card {background:#fff; border-radius:12px; padding:25px; margin-bottom:25px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;}
+    .card:hover {transform:translateY(-5px);}
+    .card a {text-decoration:none;}
+    .content-section {
+      border-left: 3px solid #f4a261;
+      padding-left: 20px;
+      margin: 15px 0;
+    }
+    .content-item {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .content-item:before {
+      content: "—";
+      position: absolute;
+      left: -23px;
+      color: #f4a261;
+      font-weight: bold;
+    }
+
+    /* Certificate / Resume buttons */
+    .certificate-btn {
+      display: inline-block;
+      background: #f4a261;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      white-space: normal;
+      text-align: center;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 10px;
+    }
+    .certificate-btn:hover {
+      background: #e76f51;
+      transform: translateY(-2px);
+    }
+
+    /* Skills - Categorized Layout */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .skill-category {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .skill-category:hover {
+      transform: translateY(-5px);
+    }
+    .skill-category h3 {
+      color: #264653;
+      margin-bottom: 20px;
+      font-size: 20px;
+      border-bottom: 2px solid #f4a261;
+      padding-bottom: 10px;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .skill-tag {
+      background: #f4a261;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .skill-tag:hover {
+      background: #e76f51;
+      transform: translateY(-2px);
+    }
+
+    /* Contact */
+    #contact {background:#264653; color:#fff; text-align:center;}
+    #contact a {color:#f4a261; margin:0 10px; font-weight:bold; text-decoration:none; transition:color 0.3s;}
+    #contact a:hover {color:#e76f51;}
+    #contact img {vertical-align:middle; margin-right:5px;}
+
+    footer {text-align:center; padding:20px; background:#222; color:#aaa; transition:background 0.5s, color 0.5s;}
+
+    /* Animations */
+    [data-animate] {opacity:0; transform:translateY(30px); transition:all 0.8s ease;}
+    [data-animate].active {opacity:1; transform:translateY(0);}
+
+    /* Dark Mode */
+    body.dark-mode {background:#121212; color:#e0e0e0;}
+    body.dark-mode header {background:#111;}
+    body.dark-mode nav a {color:#e0e0e0;}
+    body.dark-mode h2 {color:#f4a261;}
+    body.dark-mode .card {background:#1e1e1e; color:#e0e0e0;}
+    body.dark-mode #about {background:#1a1a1a;}
+    body.dark-mode #contact {background:#0f2d2a;}
+    body.dark-mode footer {background:#111; color:#777;}
+    body.dark-mode .skill-category {
+      background: #1e1e1e;
+    }
+    body.dark-mode .skill-category h3 {
+      color: #f4a261;
+    }
+    body.dark-mode .content-section {border-left-color: #f4a261;}
+    body.dark-mode .highlight-item {
+      background: rgba(30,30,30,0.7);
+      border: 1px solid rgba(244, 162, 97, 0.3);
+    }
+    body.dark-mode .feature-card {
+      background: #2d2d2d;
+      border-left-color: #f4a261;
+    }
+    body.dark-mode .feature-card h4 {
+      color: #f4a261;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {padding: 15px 20px;}
+      nav a {margin-left: 15px; font-size: 14px;}
+      #home h1 {font-size: 36px;}
+      #home h3 {font-size: 20px;}
+      .home-highlights {gap: 20px;}
+      .highlight-item {max-width: 100%;}
+      .home-buttons {flex-direction: column; align-items: center;}
+      .about-content p {
+        font-size: 16px;
+        text-align: center;
+      }
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero - Extended Home Section -->
+  <section id="home">
+    <h1>Hi, I'm Pujitha Mamidishetty👋</h1>
+    <h3 id="typing"></h3>
+    <p class="home-subtitle">
+      Passionate Data Science student specializing in transforming complex data into actionable insights. 
+      Currently pursuing dual academic programs while developing expertise in web development, data visualization, and emerging technologies.
+    </p>
+    
+    <div class="home-highlights">
+      <div class="highlight-item">
+        <h4>🎓 Dual Degree Scholar</h4>
+        <p>Major in B-Tech Data Science with Minor in Asset Integration at Usha Mittal Institute of Technology, Mumbai</p>
+      </div>
+      <div class="highlight-item">
+        <h4>💻 Aspiring Full Stack Developer</h4>
+        <p>Building skills in Python, SQL, Web Development, Data Visualization, and exploring Machine Learning concepts</p>
+      </div>
+      <div class="highlight-item">
+        <h4>📊 Budding Data Analyst</h4>
+        <p>Learning Pandas, Power BI, Statistical Analysis, and working on projects to transform data into meaningful insights</p>
+      </div>
+    </div>
+
+    <div class="home-buttons">
+      <a href="#projects" class="home-btn">View My Projects</a>
+      <a href="#contact" class="home-btn secondary">Get In Touch</a>
+      <a href="PUJITHA_MS_RESUME.pdf" download class="home-btn">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- About - Wider Section without Photo -->
+  <section id="about">
+    <h2 data-animate>About Me</h2>
+    <div class="about-content" data-animate>
+      <p>
+        Hello! I'm Pujitha Mamidishetty, a third-year B.Tech Data Science student at Usha Mittal Institute of Technology, also pursuing a minor in Asset Integration. I'm passionate about turning data into actionable insights and creating meaningful digital solutions.
+      </p>
+      <p>
+        I'm skilled in Python, SQL, web development, and data visualization, and enjoy solving real-world problems through data-driven approaches. I love exploring how technology can drive positive change.
+      </p>
+      <p>
+        I'm seeking opportunities to apply my knowledge, collaborate with professionals, and contribute to impactful, innovative projects.
+      </p>
+      
+      <div class="about-features">
+        <div class="feature-card">
+          <h4>🎯 My Mission</h4>
+          <p>Bridge the gap between data and decisions through innovative, scalable solutions that drive meaningful impact</p>
+        </div>
+        <div class="feature-card">
+          <h4>💡 My Approach</h4>
+          <p>Combine academic knowledge with hands-on learning and creative problem-solving approaches</p>
+        </div>
+        <div class="feature-card">
+          <h4>🚀 My Vision</h4>
+          <p>Grow into a skilled professional who creates technology that makes a meaningful difference in people's lives</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2 data-animate>Work Experience</h2>
+
+    <div class="card" data-animate>
+      <h3>Research Project Intern</h3>
+      <p><strong>NSF-funded Initiative | Jan 2025</strong></p>
+      <div class="content-section">
+        <div class="content-item">
+          International Research Contribution: Participated in the CUNY-India Air Pollution Study in collaboration with the City University of New York (CUNY) and supported by the U.S. National Science Foundation.
+        </div>
+        <div class="content-item">
+          Executed and coordinated data collection efforts, upholding high standards of academic and research rigor while working with an international team.
+        </div>
+        <div class="content-item">
+          Recognition: Received a certificate of completion from CUNY, acknowledging the contribution to the study.
+        </div>
+        <div class="content-item">
+          Gained valuable experience in applying data analysis techniques to environmental datasets.
+        </div>
+      </div>
+      <p>
+        <a href="Research Internship (1).pdf" target="_blank" class="certificate-btn">📄</a>
+      </p>
+    </div>
+
+    <div class="card" data-animate>
+      <h3>Web Development Intern</h3>
+      <p><strong>Software Developer | Dec 2024 - Jan 2025</strong></p>
+      <div class="content-section">
+        <div class="content-item">
+          Completed a 4-week Virtual Internship Program in Web Development at CodSoft, focusing on modern web technologies and best practices.
+        </div>
+        <div class="content-item">
+          Recognized for demonstrated technical skills and valuable contributions to projects, showing strong problem-solving abilities.
+        </div>
+        <div class="content-item">
+          Successfully completed the program with "wonderful remarks" for dedication and learning attitude.
+        </div>
+        <div class="content-item">
+          Interned with CodSoft, an ISO 9001-2015 Certified Company, gaining foundational development experience.
+        </div>
+        <div class="content-item">
+          Developed responsive web applications and enhanced user interfaces using HTML, CSS, and JavaScript.
+        </div>
+      </div>
+      <p>
+        <a href="CodSoft Internship Certificate (1).pdf" target="_blank" class="certificate-btn">📄</a>
+      </p>
+    </div>
+
+    <div class="card" data-animate>
+      <h3>Logistics Head - ACM Council</h3>
+      <p><strong>Aug 2024 - Aug 2025</strong></p>
+      <div class="content-section">
+        <div class="content-item">
+          Led a 15+ member logistics team under the ACM Council to plan and execute multiple large-scale technical events, ensuring seamless coordination across departments and 500+ participant engagement.
+        </div>
+        <div class="content-item">
+          Organized Women in Code, a flagship alumni interaction event promoting women in technology; facilitated sessions on industry experiences, career growth, and technical upskilling for 100+ attendees.
+        </div>
+        <div class="content-item">
+          Spearheaded logistics for the college's annual Tech Fest, managing event scheduling, resource allocation, and cross-team collaboration, contributing to a 30% increase in participation over previous years.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2 data-animate>Academic & Personal Projects</h2>
+
+    <div class="card" data-animate>
+      <h3>ScrapCycle - Online Recycling Platform</h3>
+      <p>Developed a comprehensive platform for buying and selling second-hand items, promoting sustainability and circular economy practices while reducing environmental impact.</p>
+      <div class="content-section">
+        <div class="content-item">
+          Facilitates reuse of household scraps including clothes, furniture, books, electronics, and other reusable items.
+        </div>
+        <div class="content-item">
+          Features secure transactions, user rating systems, and local pickup options for enhanced convenience and trust.
+        </div>
+        <div class="content-item">
+          Supports a circular economy by significantly reducing landfill waste and encouraging eco-friendly consumption patterns.
+        </div>
+        <div class="content-item">
+          Implemented user-friendly interface with advanced search and filtering capabilities for better user experience.
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-animate>
+      <h3>AI Recipe Identifier</h3>
+      <p>An innovative AI-powered web application that identifies dishes from uploaded images and provides complete recipes with nutritional information.</p>
+      <div class="content-section">
+        <div class="content-item">
+          Users can upload any food image, and the system accurately predicts the dish name using machine learning concepts.
+        </div>
+        <div class="content-item">
+          Automatically generates comprehensive recipes with detailed ingredients, cooking steps, and preparation time.
+        </div>
+        <div class="content-item">
+          Supports a wide range of global cuisines using AI models trained on diverse culinary datasets.
+        </div>
+        <div class="content-item">
+          Includes nutritional analysis and dietary recommendations based on user preferences.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2 data-animate>Skills & Technologies</h2>
+    
+    <!-- Categorized Skills Layout -->
+    <div class="skills-container" data-animate>
+      <div class="skill-category">
+        <h3>Programming Languages</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C/C++</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Data Science & Analytics</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Statistical Analysis</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Web Development</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Frontend Development</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">Git & GitHub</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Emerging Technologies</h3>
+        <div class="skill-list">
+          <span class="skill-tag">Machine Learning Concepts</span>
+          <span class="skill-tag">AI Applications</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 data-animate>Let's Connect!</h2>
+    <p>📍 Mumbai, Maharashtra</p>
+    <p><a href="mailto:mamidishettypujitha00@gmail.com">mamidishettypujitha00@gmail.com</a></p>
+    <p><a href="tel:+918686525231">+91-8686525231</a></p>
+    <p>
+      🔗 
+      <a href="https://www.linkedin.com/in/pujitha-mamidishetty/" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" style="width:20px;">
+        LinkedIn
+      </a> |
+      💻 
+      <a href="https://github.com/Pujitha1809/Portfolio-Page" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="width:20px;">
+        GitHub
+      </a>
+    </p>
+
+    <!-- Resume Download -->
+    <p>
+      <a href="PUJITHA_MS_RESUME.pdf" download class="certificate-btn">📄 Download Resume</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Pujitha Mamidishetty | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Scroll animation
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('active'); }
+      });
+    }, {threshold:0.2});
+    elements.forEach(el=>observer.observe(el));
+
+    // Dark mode toggle
+    const toggleBtn = document.getElementById('toggle');
+    toggleBtn.addEventListener('click', ()=>{
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? "☀️" : "🌙";
+    });
+
+    // Typing effect
+    const typingElement = document.getElementById("typing");
+    const roles = ["Data Science Student", "Aspiring Developer", "Tech Enthusiast", "Quick Learner"];
+    let roleIndex = 0, charIndex = 0, isDeleting = false;
+
+    function typeEffect() {
+      const current = roles[roleIndex];
+      typingElement.textContent = current.substring(0, charIndex);
+
+      if (!isDeleting && charIndex < current.length) {
+        charIndex++;
+        setTimeout(typeEffect, 120);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeEffect, 60);
+      } else {
+        if (!isDeleting) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1000);
+        } else {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeEffect, 200);
+        }
+      }
+    }
+    typeEffect();
+  </script>   
+</body>
+</html>
